@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>||Resume Profile||</title>
+	<link rel="stylesheet" type="text/css" href="resume.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0" >
+	<link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="icons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+<link rel="manifest" href="icons/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+</head>
+<body>
+	<div class="main">
+		<div class="left">
+			
+		</div>
+		<div class="right">
+			
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	var url=window.location.search;
+	var length=url.length;
+	var profile=url.slice(1,length);
+	    var indexedDB=window.indexedDB || window.mozIndexedDB  || window.webkitIndexedDB || window.msIndexedDB;
+		indexedDB ? console.log("Sucess :)") : console.log("Failed :(");
+		var open;
+		var result;
+		var store;
+		var tx;
+		var request=indexedDB.open("Database",1); /*pass a database name and version as parameters*/
+		request.onupgradeneeded=function(e){
+			open=e.target.result;
+			store=open.createObjectStore("resumedata",{keyPath:"name"});
+		}
+
+		request.onerror=function(e){
+			console.log("error"+e);
+		}
+
+		request.onsuccess=function(e){
+		open=e.target.result;
+		tx=open.transaction("resumedata","readwrite");
+		store=tx.objectStore("resumedata");
+		var info=store.get(profile);
+		info.onsuccess=function(data){
+		   console.log(data);
+		   display(data.target.result);
+	    }
+	}
+
+	var left=document.querySelector(".left");
+	var right=document.querySelector(".right");
+	function display(d){
+		var image=document.createElement("img");
+		image.src="image.jpg";
+		left.append(image);
+
+		var h2=document.createElement("h2");
+	    h2.textContent=d.name;
+	   left.appendChild(h2);
+
+	    var h3=document.createElement("h3");
+	    h3.textContent=d.rollno;
+	    left.appendChild(h3);
+
+	    var h4=document.createElement("h3");
+	    h4.textContent=d.mail;
+	    left.appendChild(h4);
+
+	    var h6=document.createElement("h3");
+	    h6.textContent=d.cell;
+	    left.appendChild(h6);
+
+	    var h5=document.createElement("h3");
+	    h5.textContent=d.address;
+	    left.appendChild(h5);
+
+	var h1=document.createElement("h1");
+    h1.innerHTML="Resume Building";
+    right.appendChild(h1);
+
+    var h2=document.createElement("h2");
+    h2.textContent="Career Objective";
+    right.appendChild(h2);
+
+    var hr=document.createElement("hr");
+    right.appendChild(hr);
+
+    var p=document.createElement("p");
+    p.textContent=d.car;
+    right.appendChild(p);
+
+	var h1=document.createElement("h2");
+	h1.innerHTML="Educational details";
+	right.appendChild(h1);
+
+	var line=document.createElement("hr");
+	right.appendChild(line);
+	
+	/*var table=document.createElement("table");
+	table.border="2";
+	var tr1="<tr><td><b>Degree</b></td><td><b>Institute</b></td><td><b>Percentage</b></td><td><b>Year Of Passing</b></td></tr>";
+	var tr2="";
+	for (var i = 0;i<d.length;i++) {
+		tr2=tr2+"<tr><td>"+d.education[i].degree+"</td><td>"+d.education[i].inst+"</td><td>"+d.education[i].per+"</td><td>"+d.education[i].yop+"</td></tr>";
+	}
+	table.innerHTML=tr1+tr2;
+	right.appendChild(table);*/
+
+	for(var i in d.education){
+		var h4=document.createElement("h4");
+		h4.textContent=d.education[i].degree;
+		right.appendChild(h4);
+
+		var ul=document.createElement("ul");
+		var insli=document.createElement("li");
+		insli.textContent=d.education[i].inst;
+		ul.appendChild(insli);
+
+		var perli=document.createElement("li");
+		perli.textContent=d.education[i].per+"%";
+		ul.appendChild(perli);
+
+		var yopli=document.createElement("li");
+		yopli.textContent=d.education[i].yop;
+		ul.appendChild(yopli);
+		h4.appendChild(ul);
+	}
+
+}
+</script>

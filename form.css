@@ -1,0 +1,77 @@
+#form{
+	background: cyan;
+	text-align: center;
+}
+h1{
+	text-decoration-color: ;
+}
+.main{
+	background-color: lightcyan;
+	margin: 3%;
+	padding: 5%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.sub{
+	width: 92%;
+	border-radius: 30%;
+	text-align: center;
+	padding: 2%;
+	background-color: darkcyan;
+}
+.sub1{
+	width:43%;
+	border-radius: 30%;
+	text-align: center;
+	margin:2%;
+	padding:1%;
+	background-color: aquamarine;
+}
+button{
+	border-radius: 50%;
+	text-align: center;
+	padding: 2%;
+	width: 10%;
+	background-color: lightseagreen;
+	box-shadow: 3px 3px 3px;
+}
+input,select{
+	margin: 1%;
+	width: 70%;
+	padding-bottom: 1%;
+}
+select{
+	background-color: beige;
+}
+
+#main{
+	background-color: paleturquoise;
+	text-align: center;
+}
+header{
+	background-color: turquoise;
+	height: 10vh;
+	padding: 1%;
+	margin: 1%;
+}
+#main a{
+	text-decoration: none;
+}
+#main button{
+	background-color: mediumturquoise;
+	box-shadow: 3px 3px 3px;
+	border-radius: 50%
+	width:10%;
+	padding: 1%;
+	margin: 2%;
+	text-align: center;
+}
+.profile{
+	color: darkcyan;
+}
+#form b{
+	text-decoration:none;
+	text-decoration-color: seashell;
+}
